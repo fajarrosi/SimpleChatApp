@@ -1,0 +1,40 @@
+{
+    "users":{
+        "USERID1":{
+            "name" :"Testname",
+            "email" :"test@gmail.com",
+            "online" : true
+        },
+        "USERID2":{
+            "name" :"Testname2",
+            "email" :"test2@gmail.com",
+            "online" : true
+        }
+    },
+    "chats":{
+        "USERID1":{
+            "USERID2":{
+                "MSGID1":{
+                    "text":"hy",
+                    "from":"them"
+                },
+                "MSGID2":{
+                    "text":"hy too",
+                    "from":"me"
+                }
+            }
+        },
+        "USERID2":{
+            "USERID1":{
+                "MSGID1":{
+                    "text":"hy",
+                    "from":"me"
+                },
+                "MSGID2":{
+                    "text":"hy too",
+                    "from":"them"
+                }
+            }
+        }
+    }
+}
