@@ -1,7 +1,7 @@
 import { firebaseAuth } from "src/boot/firebase"
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged  } from "firebase/auth";
 import { firebaseDb } from "src/boot/firebase";
-import { ref, set, onValue,update,child } from "firebase/database"
+import { ref, set, onValue,update,child,push } from "firebase/database"
 const state ={
     userDetails:{},
     users:{},
@@ -128,6 +128,16 @@ const actions={
             console.log("Msg dari " + userId + "adalah " + msg)
             commit('setMsg',msg)
         })
+    },
+    firebaseSendMsg({state},payload){
+        console.log("message",payload)
+        let userId = state.userDetails.userId
+        const chatMsg = ref(firebaseDb, 'chats/' + userId + '/' + payload.otherUserId);
+        push(chatMsg, payload.message);
+        
+        payload.message.from = 'them'
+        const chatMsg2 = ref(firebaseDb, 'chats/' + payload.otherUserId + '/' + userId );
+        push(chatMsg2, payload.message);
     }
 }
 const getters={
